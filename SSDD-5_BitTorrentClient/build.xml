@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project basedir="." name="bitTorrentClient">    
+	<property environment="env"/>
+	<property name="source.dir" location="src"/>
+   	<property name="build.dir" location="bin"/>
+	
+    <path id="classpath">
+        <pathelement location="${build.dir}"/>    	
+    </path>	
+	
+	<target name="build" description="Builds the project">
+		<delete dir="${build.dir}"/>
+		<mkdir dir="${build.dir}"/>
+		<javac srcdir="${source.dir}" destdir="${build.dir}" classpathref="classpath" fork="true" includeAntRuntime="no"/>
+    </target>
+	
+	<target name="BencoderTest" depends="build" description="Runs BencoderTest">
+		<java classname="es.deusto.ingenieria.ssdd.bitTorrent.bencoding.test.BencoderTest" classpathref="classpath" fork="true">
+			<jvmarg value="-Dfile.encoding=US_ASCII"/>
+			<jvmarg value="-Duser.language=en"/>
+			<jvmarg value="-Duser.country=US"/>
+        </java>
+    </target>
+	
+	<target name="MetainfoFileHandlerTest" depends="build" description="Runs MetainfoFileHandlerTest">
+		<java classname="es.deusto.ingenieria.ssdd.bitTorrent.metainfo.handler.test.MetainfoFileHandlerTest" classpathref="classpath" fork="true">
+			<jvmarg value="-Dfile.encoding=US_ASCII"/>
+			<jvmarg value="-Duser.language=en"/>
+			<jvmarg value="-Duser.country=US"/>
+        </java>
+    </target>	
+</project>
